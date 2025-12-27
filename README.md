@@ -1,98 +1,401 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# YouApp Backend API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A comprehensive NestJS backend application with MongoDB, Docker, JWT authentication, RabbitMQ messaging, and custom data structures showcasing OOP principles.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 🚀 Features
 
-## Description
+- **Authentication**: JWT-based authentication with secure password hashing
+- **User Profiles**: Complete CRUD operations with horoscope & Chinese zodiac calculations
+- **Real-time Chat**: Message system with threading, RabbitMQ integration, and notifications
+- **Custom Data Structures**: LinkedList, Queue, BST, Graph, and Heap implementations
+- **API Documentation**: Interactive Swagger/OpenAPI documentation
+- **Docker Support**: Complete docker-compose setup with MongoDB and RabbitMQ
+- **Validation**: Comprehensive DTO validation using class-validator
+- **Best Practices**: Clean architecture, error handling, and logging
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 📋 Prerequisites
 
-## Project setup
+- Node.js 18+ 
+- Docker & Docker Compose
+- npm or yarn
+
+## 🛠️ Installation & Setup
+
+### 1. Clone the repository
 
 ```bash
-$ npm install
+git clone <repository-url>
+cd youapp-backend
 ```
 
-## Compile and run the project
+### 2. Install dependencies
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm install
 ```
 
-## Run tests
+### 3. Environment Configuration
+
+Copy `.env.example` to `.env`:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+cp .env.example .env
 ```
 
-## Deployment
+Configure the following environment variables:
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+```env
+# Application
+NODE_ENV=development
+PORT=3000
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+# MongoDB
+MONGO_USERNAME=admin
+MONGO_PASSWORD=password123
+MONGO_DATABASE=youapp
+MONGODB_URI=mongodb://admin:password123@localhost:27017/youapp?authSource=admin
+
+# JWT
+JWT_SECRET=your-super-secret-jwt-key-change-in-production
+JWT_EXPIRATION=24h
+
+# RabbitMQ
+RABBITMQ_URL=amqp://guest:guest@localhost:5672
+QUEUE_MESSAGE=messages
+QUEUE_NOTIFICATION=notifications
+```
+
+### 4. Start with Docker (Recommended)
+
+Start all services (MongoDB, RabbitMQ, and the app):
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+docker-compose up --build
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+Or run in detached mode:
 
-## Resources
+```bash
+docker-compose up -d
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+### 5. Start without Docker (Local Development)
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+**Terminal 1 - MongoDB**:
+```bash
+docker run -d -p 27017:27017 --name mongodb \
+  -e MONGO_INITDB_ROOT_USERNAME=admin \
+  -e MONGO_INITDB_ROOT_PASSWORD=password123 \
+  mongo:6.0
+```
 
-## Support
+**Terminal 2 - RabbitMQ**:
+```bash
+docker run -d -p 5672:5672 -p 15672:15672 --name rabbitmq \
+  rabbitmq:3-management-alpine
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+**Terminal 3 - Application**:
+```bash
+npm run start:dev
+```
 
-## Stay in touch
+## 📚 API Documentation
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Once the application is running, access the interactive Swagger documentation at:
 
-## License
+```
+http://localhost:3000/api/docs
+```
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+## 🔌 API Endpoints
+
+### Authentication
+
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| POST | `/api/register` | Register a new user | No |
+| POST | `/api/login` | Login and get JWT token | No |
+
+### User Profile
+
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| POST | `/api/createProfile` | Create/update user profile | Yes |
+| GET | `/api/getProfile` | Get user profile | Yes |
+| PUT | `/api/updateProfile` | Update profile | Yes |
+
+### Chat
+
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| POST | `/api/sendMessage` | Send a message | Yes |
+| GET | `/api/viewMessages` | View messages with another user | Yes |
+| GET | `/api/conversations` | Get all conversations | Yes |
+| GET | `/api/unreadCount` | Get unread message count | Yes |
+
+## 🎯 Usage Examples
+
+### 1. Register a User
+
+```bash
+curl -X POST http://localhost:3000/api/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "john@example.com",
+    "username": "johndoe",
+    "password": "Password123!"
+  }'
+```
+
+### 2. Login
+
+```bash
+curl -X POST http://localhost:3000/api/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "usernameOrEmail": "johndoe",
+    "password": "Password123!"
+  }'
+```
+
+### 3. Create Profile
+
+```bash
+curl -X POST http://localhost:3000/api/createProfile \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer YOUR_JWT_TOKEN" \
+  -d '{
+    "name": "John Doe",
+    "birthday": "1990-03-25",
+    "gender": "Male",
+    "height": 175,
+    "weight": 70,
+    "interests": ["coding", "music", "travel"]
+  }'
+```
+
+### 4. Send Message
+
+```bash
+curl -X POST http://localhost:3000/api/sendMessage \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer YOUR_JWT_TOKEN" \
+  -d '{
+    "receiverId": "RECEIVER_USER_ID",
+    "content": "Hello! How are you?"
+  }'
+```
+
+## 🏗️ Architecture & Data Structures
+
+### Custom Data Structures Implementation
+
+1. **LinkedList** - Managing user interests
+   - Insert, remove, find operations
+   - O(1) insertion at tail
+   - Used in profile management
+
+2. **Queue** (Circular Buffer) - Unread message tracking
+   - FIFO operations
+   - Auto-resizing capability
+   - Used for message notifications
+
+3. **Binary Search Tree** - Message threading
+   - In-order, pre-order, post-order traversals
+   - Thread organization for nested replies
+   - O(log n) search/insert
+
+4. **Graph** (Adjacency List) - User relationships
+   - BFS, DFS algorithms
+   - Shortest path between users
+   - Conversation network analysis
+
+5. **Min-Heap** - Message priority queue  
+   - Priority-based message handling
+   - O(log n) insert/extract operations
+   - Future feature for urgent messages
+
+### Tech Stack
+
+- **Framework**: NestJS 10.x
+- **Database**: MongoDB 6.0
+- **Message Queue**: RabbitMQ 3.x
+- **Authentication**: JWT (JSON Web Tokens)
+- **Validation**: class-validator, class-transformer
+- **Documentation**: Swagger/OpenAPI
+- **Runtime**: Node.js 18+
+- **Container**: Docker & Docker Compose
+
+## 🧪 Testing
+
+Run unit tests:
+
+```bash
+npm run test
+```
+
+Run end-to-end tests:
+
+```bash
+npm run test:e2e
+```
+
+Run test coverage:
+
+```bash
+npm run test:cov
+```
+
+## 📦 Project Structure
+
+```
+youapp-backend/
+├── src/
+│   ├── auth/                 # Authentication module
+│   │   ├── dto/             # Data Transfer Objects
+│   │   ├── guards/          # Route guards
+│   │   ├── strategies/      # Passport strategies
+│   │   ├── auth.controller.ts
+│   │   ├── auth.service.ts
+│   │   └── auth.module.ts
+│   ├── users/                # Users & Profile module
+│   │   ├── dto/
+│   │   ├── schemas/
+│   │   ├── utils/           # Horoscope & Zodiac calculators
+│   │   ├── users.controller.ts
+│   │   ├── users.service.ts
+│   │   └── users.module.ts
+│   ├── chat/                 # Chat module
+│   │   ├── dto/
+│   │   ├── schemas/
+│   │   ├── services/        # RabbitMQ service
+│   │   ├── chat.controller.ts
+│   │   ├── chat.service.ts
+│   │   └── chat.module.ts
+│   ├── shared/               # Shared utilities
+│   │   ├── data-structures/ # Custom DS implementations
+│   │   ├── decorators/
+│   │   └── filters/
+│   ├── config/               # Configuration files
+│   ├── app.module.ts
+│   └── main.ts
+├── test/                     # E2E tests
+├── docker-compose.yml
+├── Dockerfile
+└── package.json
+```
+
+## 🔐 Security Features
+
+- Password hashing with bcrypt (salt rounds: 10)
+- JWT token-based authentication
+- Input validation with class-validator
+- Helmet.js for HTTP headers (production recommendation)
+- CORS configuration
+- Environment-based configuration
+
+## 🌟 Key Features Highlights
+
+### Horoscope & Zodiac Calculation
+
+Automatic calculation based on birthday:
+- **Horoscope**: Western astrology (Aries, Taurus, etc.)
+- **Zodiac**: Chinese zodiac (Rat, Ox, Tiger, etc.)
+
+### Message Threading
+
+Support for threaded conversations:
+- Reply to specific messages
+- Organized in tree structure
+- Efficient retrieval with BST
+
+### RabbitMQ Integration
+
+Asynchronous message processing:
+- Message queue for scalability
+- Notification system for real-time updates
+- Pub/Sub pattern implementation
+
+## 🚦 Health Checks
+
+- MongoDB: `docker exec mongodb echo 'db.runCommand("ping").ok' | mongosh --quiet`
+- RabbitMQ Management: http://localhost:15672 (guest/guest)
+- API Health: http://localhost:3000
+
+## 📝 Development
+
+Start in development mode with hot-reload:
+
+```bash
+npm run start:dev
+```
+
+Build for production:
+
+```bash
+npm run build
+```
+
+Start production build:
+
+```bash
+npm run start:prod
+```
+
+## 🐛 Troubleshooting
+
+### MongoDB Connection Issues
+
+1. Ensure MongoDB container is running:
+   ```bash
+   docker ps | grep mongodb
+   ```
+
+2. Check logs:
+   ```bash
+   docker logs mongodb
+   ```
+
+### RabbitMQ Connection Issues
+
+1. Verify RabbitMQ is running:
+   ```bash
+   docker ps | grep rabbitmq
+   ```
+
+2. Access management UI:
+   ```
+   http://localhost:15672
+   ```
+
+### Application Won't Start
+
+1. Clear node_modules and reinstall:
+   ```bash
+   rm -rf node_modules package-lock.json
+   npm install
+   ```
+
+2. Check environment variables in `.env`
+
+3. Restart Docker containers:
+   ```bash
+   docker-compose down
+   docker-compose up --build
+   ```
+
+## 📄 License
+
+MIT
+
+## 👥 Author
+
+Built for YouApp technical assessment
+
+## 🙏 Acknowledgments
+
+- NestJS framework
+- MongoDB database
+- RabbitMQ message broker
+- All open-source contributors
