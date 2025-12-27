@@ -60,9 +60,8 @@ export class ChatService {
         this.messageTree.insert({
             id: message._id,
             content: message.content,
-            createdAt: message.createdAt,
             parentMessageId: message.parentMessageId,
-        });
+        } as any);
 
         // Add to unread queue
         this.unreadMessagesQueue.enqueue({

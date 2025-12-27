@@ -4,8 +4,8 @@ import * as amqp from 'amqplib';
 
 @Injectable()
 export class RabbitMQService implements OnModuleInit, OnModuleDestroy {
-    private connection: amqp.Connection | null = null;
-    private channel: amqp.Channel | null = null;
+    private connection: any;
+    private channel: any;
     private readonly logger = new Logger(RabbitMQService.name);
     private readonly rabbitmqUrl: string;
     private readonly messageQueue: string;

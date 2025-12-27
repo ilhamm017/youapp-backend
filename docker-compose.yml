@@ -63,10 +63,10 @@ services:
         condition: service_healthy
     networks:
       - youapp-network
-    volumes:
-      - ./src:/app/src
-      - ./node_modules:/app/node_modules
-    command: npm run start:dev
+      # volumes:
+      #   - ./src:/app/src
+      #   - ./node_modules:/app/node_modules
+      # command: npm run start:dev  # Use Dockerfile CMD instead
 
 networks:
   youapp-network:
