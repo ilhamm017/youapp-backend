@@ -385,15 +385,7 @@ npm run start:prod
    docker-compose up --build
    ```
 
-## 📄 License
-
-MIT
-
-## 👥 Author
-
-Built for YouApp technical assessment
-
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - NestJS framework
 - MongoDB database
